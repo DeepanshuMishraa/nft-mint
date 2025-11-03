@@ -40,21 +40,28 @@ async function main() {
 
   const collectionMint = generateSigner(umi);
 
-  const nft = createNft(umi, {
+  console.log("Creating NFT with mint address:", collectionMint.publicKey);
+
+  const result = await createNft(umi, {
     mint: collectionMint,
     name: "Elixr",
     symbol: "ELX",
-    uri: "",
+    uri: "https://raw.githubusercontent.com/DeepanshuMishraa/nft-mint/refs/heads/master/metadata.json?token=GHSAT0AAAAAADN3AAYM4SHWY6BMI6HDVZEM2IJAMNA",
     sellerFeeBasisPoints: percentAmount(0),
     isCollection: true,
-  });
+  }).sendAndConfirm(umi);
 
-  await nft.sendAndConfirm(umi);
+  console.log("NFT created successfully!");
 
-  const createdNft = await fetchDigitalAsset(umi, collectionMint.publicKey);
+  const signature = Buffer.from(result.signature).toString("base64");
+  console.log("Transaction signature:", signature);
 
+  console.log(`\nCollection Created!`);
   console.log(
-    `Collection Created: `,
-    getExplorerLink("tx", createdNft.mint.publicKey, "devnet"),
+    `Explorer Link: ${getExplorerLink("address", collectionMint.publicKey, "devnet")}`,
   );
 }
+
+main().catch((error) => {
+  console.error(error);
+});

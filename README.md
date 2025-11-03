@@ -1,15 +1,18 @@
-# nft-mint
+## ELIXR NFT
 
-To install dependencies:
+![ELIXR NFT](./nft.png)
 
-```bash
-bun install
-```
+**Transaction Hash** : 3sdHb6BNFHbLkADTFuxczvhX67FnD8zvCkxe4xtnQXUbza2R83fhoUH9ZKg3heYWwexT6KZZsFvrCae8azuvezHE
 
-To run:
+**Mint Address** : DnEeJtwwKyZCdeGwfUnWoA3oeMe39aKMkWGEBe2KPANx
 
-```bash
-bun run index.ts
-```
+**Total Supply** : 1
 
-This project was created using `bun init` in bun v1.2.20. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+**Mint Authority** : 6eizhGWKci7f2R2VDJAtvpj7d3VudcNm8h2mJrpuFE79
+
+**Freeze Authority** : 6eizhGWKci7f2R2VDJAtvpj7d3VudcNm8h2mJrpuFE79
+
+**Update Authority** : 6eizhGWKci7f2R2VDJAtvpj7d3VudcNm8h2mJrpuFE79
+
+
+**Explorer Link** : https://explorer.solana.com/address/DnEeJtwwKyZCdeGwfUnWoA3oeMe39aKMkWGEBe2KPANx?cluster=devnet
