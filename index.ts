@@ -1,7 +1,7 @@
 import {
   createNft,
-  fetchDigitalAsset,
   mplTokenMetadata,
+  transferV1,
 } from "@metaplex-foundation/mpl-token-metadata";
 
 import {
@@ -17,6 +17,7 @@ import {
   generateSigner,
   keypairIdentity,
   percentAmount,
+  publicKey,
 } from "@metaplex-foundation/umi";
 
 async function main() {
@@ -62,6 +63,51 @@ async function main() {
   );
 }
 
-main().catch((error) => {
-  console.error(error);
+async function sendNFT() {
+  const [receiverAddress, nftMintAddress] = process.argv.slice(2);
+
+  if (!receiverAddress || !nftMintAddress) {
+    console.error("Error: Missing arguments!");
+    process.exit(1);
+  }
+
+  const connection = new Connection(clusterApiUrl("devnet"));
+  const keypair = await getKeypairFromFile();
+  const umi = createUmi(connection.rpcEndpoint);
+
+  umi.use(mplTokenMetadata());
+
+  const balance = await connection.getBalance(keypair.publicKey);
+
+  console.log(`Your Current SOL Balance: ${balance / LAMPORTS_PER_SOL} SOL`);
+
+  const user = umi.eddsa.createKeypairFromSecretKey(keypair.secretKey);
+  umi.use(keypairIdentity(user));
+
+  const receiverUmi = publicKey(receiverAddress);
+  const nftMintUmi = publicKey(nftMintAddress);
+
+  console.log(`Transferring NFT to ${receiverAddress}`);
+
+  const result = await transferV1(umi, {
+    mint: nftMintUmi,
+    authority: umi.identity,
+    tokenOwner: user.publicKey,
+    destinationOwner: receiverUmi,
+    tokenStandard: 0,
+  }).sendAndConfirm(umi);
+
+  const signature = Buffer.from(result.signature).toString("base64");
+  console.log("NFT Transfer Successful!");
+  console.log(`Transaction Signature: ${signature}`);
+  console.log(`Explorer Link: ${getExplorerLink("tx", signature, "devnet")}`);
+}
+
+// main().catch((error) => {
+//   console.error(error);
+// });
+
+sendNFT().catch((error) => {
+  console.error("error:", error);
+  process.exit(1);
 });
