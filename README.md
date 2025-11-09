@@ -60,3 +60,10 @@ Since we are sharing our public keys in the messages , it could expose the trans
 There are two transactions involved in the transaction process, one for the nft and one for the SOL. This can lead to 2x gas fee wastages making it more expensive than it should be.
 
 
+
+### Solution 
+
+Using An Escrow Smart Contract to hold the funds and nft until both the buyer and fulfill their obligations. It will be atomic meaning both the transfers would take place at the same time and if the transfer fail none of them can cheat and their funds will go back to them.  Single both the transfers will happen at the same time so single transaction will result in lower gas fees.
+
+
+Using a NFT Marketplace as its a decentralized platform that allows buyers and sellers to transact directly without the need for intermediaries.It is transparent means you can see the actual value of the nft depending upon the market pricing. It has built in escrow functionality to ensure both parties fulfill their obligations before the transaction is completed. It also enforces Royalty so it can be used to create a royalty based marketplace.
