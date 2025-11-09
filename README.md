@@ -36,3 +36,27 @@
 
 
 **Explorer Link** : https://explorer.solana.com/address/H8Q2xUxNT5GuDRTqHoZCkK1i8X7H3AHKDUUTaTuMKa9t?cluster=devnet
+
+
+### Problems With the current trading model
+
+**1. Trust Risk**
+ There is no guarantee that the sender will send the nft to the buyer one he receives the SOL from the buyer or maybe the sender sends the nft first and then buyer refuses to send the SOL.
+
+ **2 No Price Discovery**
+ Since the prices are not transparent and are set by the seller itself, there is no way for the buyer to know the real value of the nft depending upon the market pricing.
+
+
+**3. Too much Manual Coordination**
+Requires back and forth messaging between the buyer and seller to complete the transaction.
+
+**4. No Escrow**
+There is no third party holding the nft/funds until both the seller and the buyer have fulfilled their obligations. So in case of any dispute, the third party can intervene and resolve the issue.
+
+**5. Privacy Concerns**
+Since we are sharing our public keys in the messages , it could expose the transaction history of the buyer and seller.
+
+**6. Gas Fee Wastages**
+There are two transactions involved in the transaction process, one for the nft and one for the SOL. This can lead to 2x gas fee wastages making it more expensive than it should be.
+
+
